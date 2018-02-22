@@ -1,0 +1,29 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<small class="copyright">
+    <div class="security">
+<!--        <img src="{{view url=/images/secured.png}}" alt="Security" />-->
+        <img src='<?php echo $this->getViewFileUrl('images/secured.png'); ?>' alt="Security">
+    </div>
+
+    <span><?= /* @escapeNotVerified */ $block->getCopyright() ?></span>
+
+    <div class="credit-cards">
+
+<!--        <img src="{{view url=images/mastercard.png}}" alt="MasterCard" />-->
+<!--        <img src="{{view url=images/american.png}}" alt="American" />-->
+<!--        <img src="{{view url=images/visa.png}}" alt="Visa" />-->
+<!--        <img src="{{view url=images/pay_pal.png}}" alt="PayPal" />-->
+<!--        <img src="{{view url=images/discover.png}}" alt="Discovery" />-->
+
+        <img src='<?php echo $this->getViewFileUrl('images/mastercard.png'); ?>' alt="MasterCard">
+        <img src='<?php echo $this->getViewFileUrl('images/american.png'); ?>' alt="American">
+        <img src='<?php echo $this->getViewFileUrl('images/visa.png'); ?>' alt="Visa">
+        <img src='<?php echo $this->getViewFileUrl('images/pay_pal.png'); ?>' alt="PayPal">
+        <img src='<?php echo $this->getViewFileUrl('images/discover.png'); ?>' alt="Discover">
+    </div>
+</small>

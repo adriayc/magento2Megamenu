@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="default_head_blocks"/>
+    <body>
+
+
+        <referenceContainer name="header.container">
+
+
+
+            <!--<container name="header.panel.wrapper" htmlClass="panel wrapper" htmlTag="div" before="-">-->
+                <!--<container name="header.panel" label="Page Header Panel" htmlTag="div" htmlClass="panel header">-->
+                    <!--<block class="Magento\Framework\View\Element\Template" name="skip_to_content" template="Magento_Theme::html/skip.phtml">-->
+                        <!--<arguments>-->
+                            <!--<argument name="target" xsi:type="string">contentarea</argument>-->
+                            <!--<argument name="label" translate="true" xsi:type="string">Skip to Content</argument>-->
+                        <!--</arguments>-->
+                    <!--</block>-->
+                    <!--<block class="Magento\Store\Block\Switcher" name="store_language" as="store_language" template="Magento_Store::switch/languages.phtml"/>-->
+                    <!--<block class="Magento\Customer\Block\Account\Navigation" name="top.links">-->
+                        <!--<arguments>-->
+                            <!--<argument name="css_class" xsi:type="string">header links</argument>-->
+                        <!--</arguments>-->
+                    <!--</block>-->
+                <!--</container>-->
+            <!--</container>-->
+            <!--<container name="header-wrapper" label="Page Header" as="header-wrapper" htmlTag="div" htmlClass="header content">-->
+                <!--&lt;!&ndash;<block class="Magento\Theme\Block\Html\Header\Logo" name="logo">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<arguments>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<argument name="logo_img_width" xsi:type="number">189</argument>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<argument name="logo_img_height" xsi:type="number">64</argument>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</arguments>&ndash;&gt;-->
+                <!--&lt;!&ndash;</block>&ndash;&gt;-->
+
+                <!--<container name="logo-header" as="logo" label="Page Logo" htmlTag="div" htmlClass="logo-header">-->
+                    <!--<block class="Magento\Theme\Block\Html\Header\Logo" name="logo">-->
+                        <!--<arguments>-->
+                            <!--<argument name="logo_img_width" xsi:type="number">189</argument>-->
+                            <!--<argument name="logo_img_height" xsi:type="number">64</argument>-->
+                        <!--</arguments>-->
+                    <!--</block>-->
+                <!--</container>-->
+
+                <!--<container name="header-link" as="link" label="Page Link" htmlTag="div" htmlClass="header link">-->
+                    <!--<referenceBlock name="top.search">-->
+                        <!--<block class="Magento\Framework\View\Element\Template" name="advanced-search-link" template="Magento_CatalogSearch::advanced/link.phtml" />-->
+                    <!--</referenceBlock>-->
+                <!--</container>-->
+            <!--</container>-->
+
+
+            <block class="Magento\Framework\View\Element\Template" name="client_expert" template="Magento_Theme::html/expert_client.phtml"/>
+
+        </referenceContainer>
+
+
+
+
+
+
+        <referenceContainer name="content">
+            <block class="Wagento\Mega\Block\ListCategories" name="hel" template="Wagento_Mega::sayhello.phtml" />
+        </referenceContainer>
+
+
+
+
+
+        <referenceBlock name="header.panel.wrapper" remove="true"/>
+
+        <!--element = block y destination = contenedor-->
+        <!--<move element="top.links" destination="header-wrapper" after="-"/>-->
+        <move element="header.links" destination="header-wrapper" after="-"/>
+        <!--<move element="top.search" destination="logo-header" after="-"/>-->
+
+        <move element="client_expert" destination="header-wrapper" after="-"/>
+
+
+        <referenceContainer name="footer-container">
+            <container name="footer" as="footer" label="Page Footer" htmlTag="div" htmlClass="footer content">
+                <block class="Magento\Store\Block\Switcher" name="store_switcher" as="store_switcher" template="Magento_Store::switch/stores.phtml"/>
+
+                <block class="Magento\Cms\Block\Block" name="options">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_options</argument>
+                    </arguments>
+                </block>
+
+                <container name="info" as="info" label="Page Info" htmlTag="div" htmlClass="row informations">
+                    <block class="Magento\Cms\Block\Block" name="information">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer_info</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" after="-" template="Magento_Newsletter::subscribe.phtml"/>
+
+                </container>
+
+
+
+                <block class="Magento\Cms\Block\Block" name="social">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_social</argument>
+                    </arguments>
+                </block>
+
+
+                <block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>
+
+            </container>
+        </referenceContainer>
+
+    </body>
+</page>
