@@ -4,11 +4,9 @@
  * See COPYING.txt for license details.
  */
 namespace Wagento\Mega\Plugin\Block;
-
 use Magento\Catalog\Model\Category;
 use Magento\Framework\Data\Collection;
 use Magento\Framework\Data\Tree\Node;
-
 /**
  * Plugin for top menu block
  */
@@ -20,22 +18,18 @@ class Topmenu
      * @var \Magento\Catalog\Helper\Category
      */
     protected $catalogCategory;
-
     /**
      * @var \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory
      */
     private $collectionFactory;
-
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
     private $storeManager;
-
     /**
      * @var \Magento\Catalog\Model\Layer\Resolver
      */
     private $layerResolver;
-
     /**
      * Initialize dependencies.
      *
@@ -55,7 +49,6 @@ class Topmenu
         $this->storeManager = $storeManager;
         $this->layerResolver = $layerResolver;
     }
-
     /**
      * Build category tree for menu block.
      *
@@ -88,10 +81,8 @@ class Topmenu
                     }
                 }
             }
-
             /** @var Node $parentCategoryNode */
             $parentCategoryNode = $mapping[$categoryParentId];
-
             $categoryNode = new Node(
                 $this->getCategoryAsArray(
                     $category,
@@ -103,11 +94,9 @@ class Topmenu
                 $parentCategoryNode
             );
             $parentCategoryNode->addChild($categoryNode);
-
             $mapping[$category->getId()] = $categoryNode; //add node in stack
         }
     }
-
     /**
      * Add list of associated identities to the top menu block for caching purposes.
      *
@@ -129,7 +118,6 @@ class Topmenu
             $subject->addIdentity(Category::CACHE_TAG . '_' . $category->getId());
         }
     }
-
     /**
      * Get current Category from catalog layer
      *
@@ -138,14 +126,11 @@ class Topmenu
     private function getCurrentCategory()
     {
         $catalogLayer = $this->layerResolver->get();
-
         if (!$catalogLayer) {
             return null;
         }
-
         return $catalogLayer->getCurrentCategory();
     }
-
     /**
      * Convert category to array
      *
@@ -156,6 +141,7 @@ class Topmenu
      */
     private function getCategoryAsArray($category, $currentCategory, $isParentActive)
     {
+        //Aniadimos el image_yes
         return [
             'name' => $category->getName(),
             'id' => 'category-node-' . $category->getId(),
@@ -163,10 +149,11 @@ class Topmenu
             'has_active' => in_array((string)$category->getId(), explode('/', $currentCategory->getPath()), true),
             'is_active' => $category->getId() == $currentCategory->getId(),
             'is_parent_active' => $isParentActive,
-            'columns_id' => $category->getDataByKey('columns_id')
+            'image_url' => $category->getImageUrl(),
+            'columns_id' => $category->getDataByKey('columns_id'),
+            'image_yes' => $category->getDataByKey('image_yes')
         ];
     }
-
     /**
      * Get Category Tree
      *
@@ -181,7 +168,10 @@ class Topmenu
         $collection = $this->collectionFactory->create();
         $collection->setStoreId($storeId);
         $collection->addAttributeToSelect('name');
+        $collection->addAttributeToSelect('image');
         $collection->addAttributeToSelect('columns_id');
+        //Aniadimos este atrivuto de la db
+        $collection->addAttributeToSelect('image_yes');
         $collection->addFieldToFilter('path', ['like' => '1/' . $rootId . '/%']); //load only from store root
         $collection->addAttributeToFilter('include_in_menu', 1);
         $collection->addIsActiveFilter();

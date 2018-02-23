@@ -15,15 +15,21 @@
 
 
 
+/*
+
 $catagoryList = array();
 $categories = $block->getCategoryCollection(true, false, 'name', false);
 foreach ($categories as $category) {
-    /*echo $category->getName(); echo "->";
-    echo $category->getData("columns_id") . '<br />';*/
+    //echo $category->getName(); echo "->";
+    //echo $category->getData("columns_id") . '<br />';
     $level = $category->getLevel();
     echo $catagoryList[$category->getEntityId()] = __($block->_getParentName($category->getPath()) .$category->getName()). '<br />';
 
 }
+
+*/
+
+
 
 // get categories sorted by category 'name'
 

@@ -253,6 +253,13 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 ) . '</li>';
             $itemPosition++;
             $counter++;
+
+
+            //Modificamos este campo
+            if(($child->getLevel() == 2) && ($child->getIsLast()) && ($child->getData('image_yes') == 1)){
+                $parent = $child->getParent();
+                $html .= '<img class="cat-img" src="'.$parent->getImageUrl().'"/>';
+            }
         }
 
 

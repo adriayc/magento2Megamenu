@@ -20,5 +20,18 @@
                 </item>
             </argument>
         </field>
+
+        <field name="image_yes">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Wagento\Mega\Model\Config\Source\YesNoOptions</item>
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">1</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Image in Category Childs?
+                    </item>
+                </item>
+            </argument>
+        </field>
     </fieldset>
 </form>
