@@ -150,8 +150,12 @@ class Topmenu
             'is_active' => $category->getId() == $currentCategory->getId(),
             'is_parent_active' => $isParentActive,
             'image_url' => $category->getImageUrl(),
+
             'columns_id' => $category->getDataByKey('columns_id'),
-            'image_yes' => $category->getDataByKey('image_yes')
+            'image_yes' => $category->getDataByKey('image_yes'),
+            'show_logo' => $category->getDataByKey('show_logo'),
+            'show_description' => $category->getDataByKey('show_description')
+
         ];
     }
     /**
@@ -169,9 +173,13 @@ class Topmenu
         $collection->setStoreId($storeId);
         $collection->addAttributeToSelect('name');
         $collection->addAttributeToSelect('image');
+
+        //Aniadimos este atrivuto de la DB
         $collection->addAttributeToSelect('columns_id');
-        //Aniadimos este atrivuto de la db
         $collection->addAttributeToSelect('image_yes');
+        $collection->addAttributeToSelect('show_logo');
+        $collection->addAttributeToSelect('show_description');
+
         $collection->addFieldToFilter('path', ['like' => '1/' . $rootId . '/%']); //load only from store root
         $collection->addAttributeToFilter('include_in_menu', 1);
         $collection->addIsActiveFilter();
@@ -180,6 +188,7 @@ class Topmenu
         $collection->addOrder('position', Collection::SORT_ORDER_ASC);
         $collection->addOrder('parent_id', Collection::SORT_ORDER_ASC);
         $collection->addOrder('entity_id', Collection::SORT_ORDER_ASC);
+
         return $collection;
     }
 }

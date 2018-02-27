@@ -8,15 +8,18 @@ use Magento\Ui\Component\Form\Element\DataType\Text;
 class NewField extends AbstractModifier
 {
     private $locator;
+
     public function __construct(
         LocatorInterface $locator
     ) {
         $this->locator = $locator;
     }
+
     public function modifyData(array $data)
     {
         return $data;
     }
+
     public function modifyMeta(array $meta)
     {
         $meta = array_replace_recursive(
@@ -42,6 +45,7 @@ class NewField extends AbstractModifier
         );
         return $meta;
     }
+
     public function getCustomField()
     {
         return [

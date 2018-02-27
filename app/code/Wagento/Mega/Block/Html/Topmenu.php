@@ -222,6 +222,8 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
 
         /** @var \Magento\Framework\Data\Tree\Node $child */
         foreach ($children as $child) {
+//            $parent = $child->getParent();
+
             if ($childLevel === 0 && $child->getData('is_parent_active') === false) {
                 continue;
             }
@@ -242,7 +244,15 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 $html .= '</ul></li><li class="column"><ul>';
             }
 
+
+
             $html .= '<li id="columns' .  $child->getData('columns_id') . '" ' . $this->_getRenderedMenuItemAttributes($child) . '>';
+
+            if($child->getData('show_logo') == 1) {
+                $html .= '<img class="item-logo" src="'.$child->getImageUrl().'"/>';
+//                $html .= '<span>IMAGEN</span>';
+            }
+
             $html .= '<a href="' . $child->getUrl() . '" ' . $outermostClassCode . '><span>' . $this->escapeHtml(
                     $child->getName()
                 ) . '</span></a>' . $this->_addSubMenu(
@@ -250,16 +260,28 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                     $childLevel,
                     $childrenWrapClass,
                     $limit
-                ) . '</li>';
+                ) /*. '</li>'*/;
+
+            if($child->getData('show_description') == 1) {
+//                $html .= '<span>'.$child->getDescription().'</span>';
+                $html .= '<span>DESCRIPTION</span>';
+            }
+            $html .= '</li>';
+
             $itemPosition++;
             $counter++;
 
+//            var_dump($parent->getDescription());
+//            die();
+
+            $parent = $child->getParent();
 
             //Modificamos este campo
-            if(($child->getLevel() == 2) && ($child->getIsLast()) && ($child->getData('image_yes') == 1)){
-                $parent = $child->getParent();
+            if(($child->getLevel() == 2) && ($child->getIsLast()) && ($parent->getData('image_yes') == 1)){
                 $html .= '<img class="cat-img" src="'.$parent->getImageUrl().'"/>';
             }
+
+//            if($child->getLevel())
         }
 
 

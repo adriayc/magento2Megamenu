@@ -16,7 +16,7 @@ use Magento\Framework\DB\Ddl\Table;
  *
  * @author      Vlad
  */
-class YesNoOptions extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
+class YesNoLogo extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
 {
     /**
      * @var OptionFactory

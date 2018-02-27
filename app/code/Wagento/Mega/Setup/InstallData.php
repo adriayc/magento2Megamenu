@@ -101,5 +101,63 @@ class InstallData implements InstallDataInterface
                 'unique' => false
             ]
         );
+
+        $eavSetup->addAttribute(
+            \Magento\Catalog\Model\Category::ENTITY,
+            'show_logo',/* Custom Attribute Code */
+            [
+                'group' => 'Number of Columns',/* Group name in which you want
+                                              to display your custom attribute */
+                'type' => 'int',/* Data type in which formate your value save in database*/
+                'backend' => '',
+                'frontend' => '',
+                'label' => 'Yes/No', /* lablel of your attribute*/
+                'input' => 'select',
+                'class' => '',
+                'source' => 'Wagento\Mega\Model\Config\Source\YesNoOptions',
+                /* Source of your select type custom attribute options*/
+                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                /*Scope of your attribute */
+                'visible' => true,
+                'required' => false,
+                'user_defined' => false,
+                'default' => '',
+                'searchable' => false,
+                'filterable' => false,
+                'comparable' => false,
+                'visible_on_front' => false,
+                'used_in_product_listing' => true,
+                'unique' => false
+            ]
+        );
+
+        $eavSetup->addAttribute(
+            \Magento\Catalog\Model\Category::ENTITY,
+            'show_description',/* Custom Attribute Code */
+            [
+                'group' => 'Number of Columns',/* Group name in which you want
+                                              to display your custom attribute */
+                'type' => 'int',/* Data type in which formate your value save in database*/
+                'backend' => '',
+                'frontend' => '',
+                'label' => 'Yes/No', /* lablel of your attribute*/
+                'input' => 'select',
+                'class' => '',
+                'source' => 'Wagento\Mega\Model\Config\Source\YesNoOptions',
+                /* Source of your select type custom attribute options*/
+                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                /*Scope of your attribute */
+                'visible' => true,
+                'required' => false,
+                'user_defined' => false,
+                'default' => '',
+                'searchable' => false,
+                'filterable' => false,
+                'comparable' => false,
+                'visible_on_front' => false,
+                'used_in_product_listing' => true,
+                'unique' => false
+            ]
+        );
     }
 }
